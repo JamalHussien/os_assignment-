@@ -20,18 +20,19 @@ make
 ```
 
 2. Running the Examples
-2.1 Process Creation (Fork) This program creates a child process and prints the PID of both parent and child.
+
+2.1. Process Creation (Fork) This program creates a child process and prints the PID of both parent and child.
 
 ```bash
 ./process_creation
 ```
 
-2.2 The Linker This executable combines file1.c and file2.c to demonstrate separate compilation.
+2.2. The Linker This executable combines file1.c and file2.c to demonstrate separate compilation.
 ```bash
 ./output_program
 ```
 
-2.3 The Loader This is a simple program used to inspect dynamic libraries.
+2.3. The Loader This is a simple program used to inspect dynamic libraries.
 
 ```bash
 ./simple_program
