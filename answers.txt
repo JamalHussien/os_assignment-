@@ -1,0 +1,71 @@
+1) process_creation.c :
+   When fork() is called the operating system creates an exact duplicate of the calling process.
+   Child Process: The fork() call returns 0 the code inside if (pid == 0) executes here.
+   Parent Process: The fork() call returns the Process ID (PID) of the new child. The code inside else if (pid > 0) executes here.
+   both processes then run concurrently
+
+     fork() returns:
+    * error (no child created),
+    * 0 to the child process,
+    * child's PID (>0) to the parent.
+
+2. file1.c & file2.c (linker):
+   f1 and f2 have seperate compilation, file1.c contains the definition of the hello() function. file2.c contains the main function that calls hello().
+   They cannot run individually they must be linked together to create a single executable where the call in file2 "finds" the code in file1.
+  
+  The linker takes one or more object files and libraries, resolves symbol references, merges code and data sections, performs relocations,
+  and produces either:
+    * An executable image when linking for the final program
+    * A shared library when creating dynamically linkable modules.
+    
+    in addition to:
+  - Static linking: library code is copied into the final executable at link time.
+  - Dynamic linking: the linker records which shared libraries are needed the actual code is loaded at runtime.
+  - If a symbol is missing the linker reports an "undefined reference" error.
+
+3) simple_program.c (role of the Loader)
+  simple_program.c prints a line and exits. We compile it to an executable and then inspect dynamic dependencies with ldd.
+
+- Role of the Loader
+  The loader is part of the operating system
+  Its tasks include:
+    * Loading the executable's segments into memory.
+    * Mapping dynamic shared libraries required by the executable.
+    * Performing relocations that must be resolved at load time.
+    * Preparing the process stack (argv, envp, auxiliary vector).
+    * Jumping to the program's entry point (usually _start), transferring control to the runtime startup code.
+
+- Using ldd:
+  ldd <executable> shows the shared libraries the dynamic linker will load at runtime for dynamically linked executables.
+  Statically linked executables will show fewer or no dynamic deps.
+
+4) Process Control:
+    
+    Background Processing (&): By adding an (&) to the end of a command (like sleep 300 &), we instruct the shell to run the process in the background. This allows the user to continue using the terminal immediately without waiting for the command to finish.
+    
+    jobs command: This command lists the active jobs in the current shell session showing whether they are running stopped or done.
+    
+    ps aux: This command lists all running processes on the system. The flags stand for:
+    
+    a: All users.
+    
+    u: Display the user/owner of the process.
+    
+    x: Show processes not attached to a terminal.
+    
+    grep: We pipe (|) the output of ps into grep to filter the massive list and find only the specific process we are looking for.
+    
+    kill: This system call sends a signal to a process (by default, the TERM signal) instructing it to terminate. It requires the unique Process ID (PID) to identify which process to stop.
+
+   kill -STOP <PID>: pauses a process
+
+   kill -CONT <PID>: continues a process
+   
+5) Makefile
+  make: builds everything
+  make clean: removes binaries
+
+
+
+
+End of answers.txt

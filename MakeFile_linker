@@ -1,0 +1,8 @@
+CC = gcc
+CFLAGS = -Wall
+
+output_program: file1.c file2.c
+	$(CC) $(CFLAGS) file1.c file2.c -o output_program
+
+clean:
+	rm -f output_program

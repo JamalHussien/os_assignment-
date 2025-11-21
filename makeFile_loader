@@ -1,0 +1,8 @@
+CC = gcc
+CFLAGS = -Wall
+
+simple_program: simple_program.c
+	$(CC) $(CFLAGS) simple_program.c -o simple_program
+
+clean:
+	rm -f simple_program

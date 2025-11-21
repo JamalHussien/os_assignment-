@@ -1,0 +1,8 @@
+CC = gcc
+CFLAGS = -Wall
+
+process_creation: process_creation.c
+	$(CC) $(CFLAGS) process_creation.c -o process_creation
+
+clean:
+	rm -f process_creation
